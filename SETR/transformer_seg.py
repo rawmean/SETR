@@ -164,6 +164,9 @@ class SETRModel(nn.Module):
     def forward(self, x):
         _, final_x = self.encoder_2d(x)
         x = self.decoder_2d(final_x)
+        x = x.squeeze(1) #.type(torch.LongTensor)
+        x = nn.Sigmoid()(x)
+        # print('hello!', x.shape)
         return x 
 
    
